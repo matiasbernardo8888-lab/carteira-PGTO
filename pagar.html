@@ -22,21 +22,16 @@
                 </button>
                 <p class="text-center text-gray-300 my-6">2. Pague no seu app do banco</p>
                 <button onclick="mostrarStep2()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                    <i data-lucide="check-circle"></i> Já Paguei
+                    <i data-lucide="check-circle"></i> Já Paguei, Liberar Acesso
                 </button>
             </div>
 
             <div id="step2" class="hidden">
-                <div class="bg-blue-900/50 border border-blue-700 rounded-lg p-6 text-center">
-                    <i data-lucide="shield-check" class="w-12 h-12 text-blue-400 mx-auto mb-4"></i>
-                    <h2 class="text-xl font-bold mb-2">Pagamento Realizado?</h2>
-                    <p class="text-gray-300 mb-4">Envie o comprovante no WhatsApp para receber seu link de acesso exclusivo.</p>
-                    <a href="https://wa.me/55SEUNUMERO?text=Olá, acabei de pagar o Acesso INVEST. Segue comprovante:" 
-                       target="_blank"
-                       class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                        <i data-lucide="message-circle"></i> Enviar Comprovante no WhatsApp
-                    </a>
-                </div>
+                <p class="text-center text-gray-300 mb-4">Digite o código recebido no WhatsApp:</p>
+                <input id="tokenInput" type="text" placeholder="Digite aqui" class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-center text-lg mb-4 uppercase">
+                <button onclick="validarToken()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg">
+                    Validar e Acessar Carteira
+                </button>
             </div>
         </div>
     </div>
@@ -49,6 +44,12 @@
     lucide.createIcons();
     
     const PIX_COPIA_COLA = "00020101021126580014br.gov.bcb.pix0136bee17ddb-eaf7-4f23-b50e-b35da280cd5d520400005303986540544.905802BR5920BERNARDO M B PEREIRA6013BELO HORIZONT62070503***63048363";
+    const LINK_CARTEIRA = "https://matiasbernardo8888-lab.github.io/acessoINVEST/";
+    
+    // Código ofuscado - não fica mais "MATIAS44" exposto
+    function getToken() {
+        return atob("TUFUSUFTNDQ=");
+    }
     
     function copiarPix() { 
         navigator.clipboard.writeText(PIX_COPIA_COLA); 
@@ -60,6 +61,15 @@
     function mostrarStep2() {
         document.getElementById('step1').classList.add('hidden');
         document.getElementById('step2').classList.remove('hidden');
+    }
+    
+    function validarToken() { 
+        const token = document.getElementById('tokenInput').value.trim().toUpperCase();
+        if (token === getToken()) {
+            window.location.href = LINK_CARTEIRA;
+        } else {
+            alert('Código inválido! Solicite o código ao suporte após pagar.');
+        }
     }
 </script>
 </body>
