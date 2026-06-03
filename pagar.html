@@ -28,10 +28,11 @@
 
             <div id="step2" class="hidden">
                 <p class="text-center text-gray-300 mb-4">Digite o código recebido no WhatsApp:</p>
-                <input id="tokenInput" type="text" placeholder="Digite aqui" class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-center text-lg mb-4 uppercase">
+                <input id="tokenInput" type="text" placeholder="Digite o código aqui" class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-center text-lg mb-4 uppercase">
                 <button onclick="validarToken()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg">
                     Validar e Acessar Carteira
                 </button>
+                <p class="text-center text-xs text-gray-500 mt-4">Ainda não tem o código? <a href="https://wa.me/55SEUNUMERO?text=Olá, paguei o Acesso INVEST e preciso do código" target="_blank" class="text-yellow-400 underline">Clique aqui e peça no WhatsApp</a></p>
             </div>
         </div>
     </div>
@@ -46,7 +47,7 @@
     const PIX_COPIA_COLA = "00020101021126580014br.gov.bcb.pix0136bee17ddb-eaf7-4f23-b50e-b35da280cd5d520400005303986540544.905802BR5920BERNARDO M B PEREIRA6013BELO HORIZONT62070503***63048363";
     const LINK_CARTEIRA = "https://matiasbernardo8888-lab.github.io/acessoINVEST/";
     
-    // Código ofuscado - não fica mais "MATIAS44" exposto
+    // Código ofuscado - não aparece mais no HTML
     function getToken() {
         return atob("TUFUSUFTNDQ=");
     }
@@ -68,7 +69,7 @@
         if (token === getToken()) {
             window.location.href = LINK_CARTEIRA;
         } else {
-            alert('Código inválido! Solicite o código ao suporte após pagar.');
+            alert('Código inválido! Solicite o código no WhatsApp após realizar o pagamento.');
         }
     }
 </script>
